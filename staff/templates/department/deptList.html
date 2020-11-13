@@ -1,0 +1,18 @@
+{% include "header.html" %}
+
+<div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4">
+        <div class="p-4 lg:w-1/2">
+        <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+            {% for object in object_list %}
+            <div class="flex-grow sm:pl-12">
+                <h2 class="title-font font-medium text-lg text-gray-900"> <a href="{% url 'detail-department' pk=object.id %}"> {{ object.department_name }} </a> </h2>
+                <h3 class="text-gray-500 mb-3">{{ object.manager.employee_name }}</h3>
+            </div>
+            {% empty %} 
+                <h2 class="title-font font-medium text-lg text-gray-900">No objects yet.</h2>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
+<ul> 

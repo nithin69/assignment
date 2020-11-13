@@ -1,0 +1,30 @@
+1. django-admin startproject company
+   cd company
+   ./manage.py startapp staff
+
+2.
+
+    class Employee(models.Model):
+        employee_name = models.CharField(max_length=100, verbose_name='Employee_name', null=False, blank=False)
+        department = models.ForeignKey('Department', related_name="department", on_delete=models.CASCADE)
+        email = models.EmailField(max_length = 150, verbose_name ='Email', null= False, blank= False)
+        date_of_birth = models.DateField(verbose_name ='Date Of Birth', null= False, blank= False)
+        picture = models.ImageField(upload_to ='pictures/', null= False, blank= False)
+        def __str__(self):
+            return self.employee_name
+
+    class Department(models.Model):
+        department_name = models.CharField(max_length=100, verbose_name = 'Department Name', null=False, blank=False)
+        manager = models.ForeignKey(Employee, related_name="employee", on_delete=models.CASCADE, null=True, blank = True)
+        def __str__(self):
+            return self.department_name
+
+4. ./manage.py test taff (it will run all test cases in that particular app)
+
+7. To make models.py compatible with the form and view i had made email, date_of_birth and picture field as "null=True and blank=True"
+
+8. deptlist.html is used to display departments list
+   deptdetail.html is used to display detail view of particular department
+   empForm.html is used for employee form submition 
+
+   These files are placed inside staff app. We can also place templates folder at project area but for that we have to define path for templates in settings.py
